@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.gam0zing.stay_on_my_target.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "stay_on_my_target.refmap.json",
+  "mixins": [
+    "ClientboundSetEntityMotionPacketMixin"
+  ],
+  "client": [
+    "ClientPacketListenerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
