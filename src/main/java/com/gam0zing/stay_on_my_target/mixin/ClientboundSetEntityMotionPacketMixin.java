@@ -12,11 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ClientboundSetEntityMotionPacketMixin {
 
     @Unique
-    private static final double CUSTOM_PRECISION = 1000.0;
+    private static final double CUSTOM_PRECISION = 8000.0;
 
     @Shadow
     @Final
-    @Mutable  // 允许修改final字段
+    @Mutable
     private int xa;
 
     @Shadow

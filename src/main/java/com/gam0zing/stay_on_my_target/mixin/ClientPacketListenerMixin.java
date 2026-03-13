@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ClientPacketListenerMixin {
 
     @Unique
-    private static final double CUSTOM_PRECISION = 1000.0;
+    private static final double CUSTOM_PRECISION = 8000.0;
 
     @Shadow
     @Final
