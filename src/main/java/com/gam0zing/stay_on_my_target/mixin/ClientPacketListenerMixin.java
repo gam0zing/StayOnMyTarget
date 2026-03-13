@@ -1,5 +1,6 @@
 package com.gam0zing.stay_on_my_target.mixin;
 
+import com.gam0zing.stay_on_my_target.ModConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -17,9 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPacketListener.class)
 public class ClientPacketListenerMixin {
 
-    @Unique
-    private static final double CUSTOM_PRECISION = 8000.0;
-
     @Shadow
     @Final
     private Minecraft minecraft;
@@ -34,9 +32,9 @@ public class ClientPacketListenerMixin {
         Entity entity = this.level.getEntity(pPacket.getId());
         if (entity == null) return;
 
-        double motX = pPacket.getXa() / CUSTOM_PRECISION;
-        double motY = pPacket.getYa() / CUSTOM_PRECISION;
-        double motZ = pPacket.getZa() / CUSTOM_PRECISION;
+        double motX = pPacket.getXa() / ModConfig.customPrecision;
+        double motY = pPacket.getYa() / ModConfig.customPrecision;
+        double motZ = pPacket.getZa() / ModConfig.customPrecision;
 
         entity.lerpMotion(motX, motY, motZ);
         ci.cancel();

@@ -17,7 +17,7 @@ public class ModConfig {
         final ForgeConfigSpec.Builder commonBuilder = new ForgeConfigSpec.Builder();
 
         commonBuilder.comment("common");
-        CUSTOM_PRECISION = commonBuilder.comment("Used to control the precision and upper limit of the velocity component in network packets. \nThe precision is 1 divided by this number, and the upper limit is 32767 divided by this number. \nFor example, the vanilla value is 8000, so the precision of the velocity component is 0.000125, and the upper limit is 4.095875 (vanilla was artificially set to 3.9).").defineInRange("CUSTOM_PRECISION",8000D, 100D, 32767D);
+        CUSTOM_PRECISION = commonBuilder.comment("Used to control the precision and upper limit of the velocity component in network packets. \nThe precision is 1 divided by this number, and the upper limit is 32767 divided by this number. \nFor example, the vanilla value is 8000, so the precision of the velocity component is 0.000125, and the upper limit is 4.095875 (block/tick) (vanilla was artificially set to 3.9).").defineInRange("CUSTOM_PRECISION",8000D, 100D, 32767D);
         SPEC_COMMON = commonBuilder.build();
     }
 

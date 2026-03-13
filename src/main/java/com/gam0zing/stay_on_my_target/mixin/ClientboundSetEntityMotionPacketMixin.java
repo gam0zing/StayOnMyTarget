@@ -1,5 +1,6 @@
 package com.gam0zing.stay_on_my_target.mixin;
 
+import com.gam0zing.stay_on_my_target.ModConfig;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -10,9 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientboundSetEntityMotionPacket.class)
 public class ClientboundSetEntityMotionPacketMixin {
-
-    @Unique
-    private static final double CUSTOM_PRECISION = 8000.0;
 
     @Shadow
     @Final
@@ -31,7 +29,7 @@ public class ClientboundSetEntityMotionPacketMixin {
 
     @Inject(method = "<init>(ILnet/minecraft/world/phys/Vec3;)V", at = @At("RETURN"))
     private void onConstruct(int pId, Vec3 pDeltaMovement, CallbackInfo ci) {
-        double customLimit = Short.MAX_VALUE / CUSTOM_PRECISION;
+        double customLimit = Short.MAX_VALUE / ModConfig.customPrecision;
 
         double highest = Math.max(Math.max(pDeltaMovement.x, pDeltaMovement.z), pDeltaMovement.y);
         double scale = 1;
@@ -51,8 +49,8 @@ public class ClientboundSetEntityMotionPacketMixin {
             d3 *= scale;
         }
 
-        this.xa = (int)(d1 * CUSTOM_PRECISION);
-        this.ya = (int)(d2 * CUSTOM_PRECISION);
-        this.za = (int)(d3 * CUSTOM_PRECISION);
+        this.xa = (int)(d1 * ModConfig.customPrecision);
+        this.ya = (int)(d2 * ModConfig.customPrecision);
+        this.za = (int)(d3 * ModConfig.customPrecision);
     }
 }
